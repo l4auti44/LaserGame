@@ -74,7 +74,10 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
-		private bool IsCurrentDeviceMouse
+		public bool enableMovement = true;
+
+
+        private bool IsCurrentDeviceMouse
 		{
 			get
 			{
@@ -112,10 +115,18 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			JumpAndGravity();
-			GroundedCheck();
-			Move();
-		}
+			if (!enableMovement && Input.GetKeyDown(KeyCode.R))
+			{
+				enableMovement = true;
+			}
+			if (enableMovement)
+			{
+                Move();
+            }
+            JumpAndGravity();
+            GroundedCheck();
+
+        }
 
 		private void LateUpdate()
 		{
@@ -264,5 +275,13 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-	}
+
+		public void RestartPosition()
+		{
+			enableMovement = false;
+			transform.position = new Vector3(0,0,0);
+
+        }
+
+    }
 }
