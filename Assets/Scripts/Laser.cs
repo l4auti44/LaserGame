@@ -6,7 +6,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     [SerializeField] private Transform laserOrigin;
-    [SerializeField] private GameObject laserVisual;
+    [SerializeField] private GameObject laserPivot;
     [SerializeField] private float laserMaxDistance = 30f;
 
 
@@ -14,7 +14,7 @@ public class Laser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        laserPivot.transform.localScale = new Vector3(1, laserMaxDistance, 1);
         
     }
 
@@ -27,14 +27,21 @@ public class Laser : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, laserMaxDistance))
         {
+            if (DEBUG) Debug.Log("Object Find by laser");
+            laserPivot.transform.localScale = new Vector3(1, hit.distance, 1);
             if (hit.transform.CompareTag("Player"))
             {
                 if(DEBUG) Debug.Log("Player Die");
                 GameObject playerParent = hit.transform.parent.gameObject;
-
-                playerParent.GetComponent<FirstPersonController>().RestartPosition();
+                //playerParent.GetComponent<FirstPersonController>().RestartPosition();
                 
+
             }
+
+        }
+        else
+        {
+            laserPivot.transform.localScale = new Vector3(1, laserMaxDistance, 1);
         }
     }
 }
