@@ -16,6 +16,8 @@ namespace StarterAssets
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
+        [Tooltip("Crouch speed of the character in m/s")]
+        public float CrouchSpeed = 3.0f;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -59,6 +61,8 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
+
+		private bool isCrouching = false;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -165,8 +169,21 @@ namespace StarterAssets
 		private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+			float targetSpeed;
+			if (_input.sprint) 
+				targetSpeed = SprintSpeed;
+			else if (_input.crouch)
+				targetSpeed = CrouchSpeed;
+			else 
+				targetSpeed = MoveSpeed;
 
+			isCrouching = targetSpeed == CrouchSpeed;
+			
+
+			if (isCrouching) 
+				transform.localScale = new Vector3(1, 0.5f, 1);
+			else
+				transform.localScale = Vector3.one;
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
