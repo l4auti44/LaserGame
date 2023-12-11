@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -53,6 +54,9 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+		[Header("Slide")]
+		[SerializeField] private float slideTime;
+		[SerializeField] private TextMeshProUGUI speedText;
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -77,8 +81,6 @@ namespace StarterAssets
 		private GameObject _mainCamera;
 
 		private const float _threshold = 0.01f;
-
-		public bool enableMovement = true;
 
 
         private bool IsCurrentDeviceMouse
@@ -119,14 +121,9 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			if (!enableMovement && Input.GetKeyDown(KeyCode.R))
-			{
-				enableMovement = true;
-			}
-			if (enableMovement)
-			{
-                Move();
-            }
+
+            Move();
+
             JumpAndGravity();
             GroundedCheck();
 
@@ -169,16 +166,8 @@ namespace StarterAssets
 		private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed;
-			if (_input.sprint) 
-				targetSpeed = SprintSpeed;
-			else if (_input.crouch)
-				targetSpeed = CrouchSpeed;
-			else 
-				targetSpeed = MoveSpeed;
-
-			isCrouching = targetSpeed == CrouchSpeed;
-			
+			float targetSpeed = SetTargetSpeed(_speed);
+			speedText.text = "speed: " + targetSpeed.ToString();
 
 			if (isCrouching) 
 				transform.localScale = new Vector3(1, 0.5f, 1);
@@ -226,6 +215,18 @@ namespace StarterAssets
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
 
+		private float SetTargetSpeed(float targetSpeed)
+		{
+			float previousSpeed = targetSpeed;
+			isCrouching = _input.crouch;
+
+			if (_input.sprint)
+				return SprintSpeed;
+			else if (isCrouching)
+				return Mathf.Lerp(previousSpeed, CrouchSpeed, slideTime * Time.deltaTime);
+            else
+                return MoveSpeed;
+        }
 		private void JumpAndGravity()
 		{
 			if (Grounded)
@@ -293,12 +294,6 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
-		public void RestartPosition()
-		{
-			enableMovement = false;
-			transform.position = new Vector3(0,0,0);
-
-        }
 
     }
 }

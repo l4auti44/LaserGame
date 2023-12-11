@@ -13,6 +13,8 @@ public class PickupController : MonoBehaviour
     [SerializeField] private float pickupRange = 5.0f;
     [SerializeField] private float pickupForce = 150.0f;
 
+    private int previuosLayer;
+
 
     // Update is called once per frame
     void Update()
@@ -53,13 +55,14 @@ public class PickupController : MonoBehaviour
         if (pickObj.GetComponent<Rigidbody>())
         {
             heldObjRB = pickObj.GetComponent<Rigidbody>();
-
+            previuosLayer = pickObj.layer;
             heldObjRB.useGravity = false;
             heldObjRB.drag = 10;
             heldObjRB.constraints = RigidbodyConstraints.FreezeRotation;
-
+            
             heldObjRB.transform.parent = holdArea;
             heldObj = pickObj;
+            heldObj.layer = 6;
         }
     }
 
@@ -68,7 +71,7 @@ public class PickupController : MonoBehaviour
         heldObjRB.useGravity = true;
         heldObjRB.drag = 1;
         heldObjRB.constraints = RigidbodyConstraints.None;
-
+        heldObj.layer = previuosLayer;
         heldObj.transform.parent = null;
         heldObj = null;
         
