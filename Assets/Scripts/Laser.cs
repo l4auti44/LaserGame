@@ -9,6 +9,9 @@ public class Laser : MonoBehaviour
     [SerializeField] private GameObject laserPivot;
     [SerializeField] private float laserMaxDistance = 30f;
     [SerializeField] private float damage = 15f;
+
+    private bool firstRay = true, hitingTarget = false;
+    private GameObject previousHit;
     //[SerializeField] private float knockbackStrenght = 4f;
 
     //[SerializeField] private bool DEBUG = false;
@@ -22,24 +25,43 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
+        RaycastHit hit;   
         Ray ray = new Ray(laserOrigin.position, laserOrigin.up);
         Debug.DrawRay(ray.origin, ray.direction * laserMaxDistance, Color.red);
 
         if (Physics.Raycast(ray, out hit, laserMaxDistance))
         {
-            
+            if (firstRay)
+            {
+                previousHit = hit.transform.gameObject;
+                firstRay = false;
+            }
             laserPivot.transform.localScale = new Vector3(1, hit.distance, 1);
             if (hit.transform.CompareTag("Player"))
             {
-                //GameObject playerParent = hit.transform.gameObject;
                 HealthSystem.instance.TakeDamage(damage);
-                //playerParent.GetComponent<Rigidbody>().AddForce(laserOrigin.up * knockbackStrenght) ;
-                //playerParent.GetComponent<FirstPersonController>().RestartPosition();
                 
 
             }
+            if (hit.transform.CompareTag("Target"))
+            {
+                hitingTarget = true;
+                hit.transform.GetComponent<Target>().DoAction();
+            }
+            else
+            {
+                hitingTarget = false;
+            }
+            if (hit.transform.name != previousHit.name && !hitingTarget)
+            {
+                if (previousHit.GetComponent<Target>())
+                {
+                    previousHit.GetComponent<Target>().Undo();
+                }
+            }
 
+            previousHit = hit.transform.gameObject;
+            
         }
         else
         {
