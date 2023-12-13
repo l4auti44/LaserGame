@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -223,7 +224,19 @@ namespace StarterAssets
 			if (_input.sprint)
 				return SprintSpeed;
 			else if (isCrouching)
-				return Mathf.Lerp(previousSpeed, CrouchSpeed, slideTime * Time.deltaTime);
+			{
+				if (previousSpeed >= CrouchSpeed)
+				{
+                    float blend = Mathf.Pow(0.5f, Time.deltaTime * slideTime);
+                    return Mathf.Lerp(CrouchSpeed, previousSpeed, blend);
+				}
+				else
+				{
+					return CrouchSpeed;
+				}
+				
+			}
+				
             else
                 return MoveSpeed;
         }
