@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserOrigin: {fileID: 1537450471730118383}
   laserPivot: {fileID: 2359628930512016673}
-  laserMaxDistance: 9
+  laserMaxDistance: 30
   damage: 15
 --- !u!1 &6220513084756048695
 GameObject:
