@@ -13,7 +13,7 @@ public class MoveAtoB : MonoBehaviour
     {
         targetPosition = pointA.position;
     }
-    void Update()
+    void FixedUpdate()
     {
        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         if (Vector3.Distance(transform.position, targetPosition) < 0.001f)
