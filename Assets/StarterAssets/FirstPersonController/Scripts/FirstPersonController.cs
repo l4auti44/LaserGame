@@ -56,6 +56,7 @@ namespace StarterAssets
 		public float BottomClamp = -90.0f;
 
 		[Header("Slide")]
+		[Tooltip("How fast the speed will reach the crouching speed (Increase for shorter slide)")]
 		[SerializeField] private float slideTime;
 		[SerializeField] private TextMeshProUGUI speedText;
 		// cinemachine
@@ -221,7 +222,7 @@ namespace StarterAssets
 			float previousSpeed = targetSpeed;
 			isCrouching = _input.crouch;
 
-			if (_input.sprint)
+			if (_input.sprint && !isCrouching)
 				return SprintSpeed;
 			else if (isCrouching)
 			{
