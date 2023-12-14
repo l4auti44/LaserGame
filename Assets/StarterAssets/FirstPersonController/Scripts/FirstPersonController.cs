@@ -22,8 +22,8 @@ namespace StarterAssets
         public float CrouchSpeed = 3.0f;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
-		[Tooltip("Acceleration and deceleration")]
-		public float SpeedChangeRate = 10.0f;
+		//[Tooltip("Acceleration and deceleration")]
+		//public float SpeedChangeRate = 10.0f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -59,6 +59,8 @@ namespace StarterAssets
 		[Tooltip("How fast the speed will reach the crouching speed (Increase for shorter slide)")]
 		[SerializeField] private float slideTime;
 		[SerializeField] private TextMeshProUGUI speedText;
+		[SerializeField] private float slideBoost = 3f;
+		private bool alreadyBoosted = false;
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -181,12 +183,14 @@ namespace StarterAssets
 			// if there is no input, set the target speed to 0
 			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
+			/*
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
 			float speedOffset = 0.1f;
 			float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
+			
 			// accelerate or decelerate to target speed
 			if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
 			{
@@ -201,6 +205,9 @@ namespace StarterAssets
 			{
 				_speed = targetSpeed;
 			}
+			*/
+
+			_speed = targetSpeed; //I added this inteast of the lerp speed
 
 			// normalise input direction
 			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
@@ -222,12 +229,20 @@ namespace StarterAssets
 			float previousSpeed = targetSpeed;
 			isCrouching = _input.crouch;
 
+			if (!isCrouching) { alreadyBoosted = false; }
+
 			if (_input.sprint && !isCrouching)
 				return SprintSpeed;
 			else if (isCrouching)
 			{
 				if (previousSpeed >= CrouchSpeed)
 				{
+					if (!alreadyBoosted)
+					{
+						float res = previousSpeed + slideBoost;
+						alreadyBoosted = true;
+						return res;
+					}
                     float blend = Mathf.Pow(0.5f, Time.deltaTime * slideTime);
                     return Mathf.Lerp(CrouchSpeed, previousSpeed, blend);
 				}
