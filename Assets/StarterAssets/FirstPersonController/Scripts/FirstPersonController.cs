@@ -61,8 +61,11 @@ namespace StarterAssets
 		[SerializeField] private TextMeshProUGUI speedText;
 		[SerializeField] private float slideBoost = 3f;
 		private bool alreadyBoosted = false;
-		// cinemachine
-		private float _cinemachineTargetPitch;
+		private bool isSliding = false;
+		[SerializeField] private GameObject slidingEffect;
+
+        // cinemachine
+        private float _cinemachineTargetPitch;
 
 		// player
 		private float _speed;
@@ -127,7 +130,7 @@ namespace StarterAssets
 		{
 
             Move();
-
+			ManageUIEffect();
             JumpAndGravity();
             GroundedCheck();
 
@@ -232,11 +235,16 @@ namespace StarterAssets
 			if (!isCrouching) { alreadyBoosted = false; }
 
 			if (_input.sprint && !isCrouching)
-				return SprintSpeed;
+			{
+				isSliding = false;
+                return SprintSpeed;
+            }
+				
 			else if (isCrouching)
 			{
 				if (previousSpeed >= CrouchSpeed)
 				{
+					isSliding = true;
 					if (!alreadyBoosted)
 					{
 						float res = previousSpeed + slideBoost;
@@ -248,7 +256,8 @@ namespace StarterAssets
 				}
 				else
 				{
-					return CrouchSpeed;
+					isSliding = false;
+                    return CrouchSpeed;
 				}
 				
 			}
@@ -323,6 +332,17 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
+		private void ManageUIEffect()
+		{
+			if (isSliding)
+			{
+				slidingEffect.SetActive(true);
+			}
+			else
+			{
+                slidingEffect.SetActive(false);
+            }
+		}
 
     }
 }
