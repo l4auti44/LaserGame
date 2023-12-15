@@ -58,11 +58,10 @@ namespace StarterAssets
 		[Header("Slide")]
 		[Tooltip("How fast the speed will reach the crouching speed (Increase for shorter slide)")]
 		[SerializeField] private float slideTime;
-		[SerializeField] private TextMeshProUGUI speedText;
-		[SerializeField] private float slideBoost = 3f;
+        [SerializeField] private float slideBoost = 3f;
+        private TextMeshProUGUI speedText;
 		private bool alreadyBoosted = false;
-		private bool isSliding = false;
-		[SerializeField] private GameObject slidingEffect;
+
 
         // cinemachine
         private float _cinemachineTargetPitch;
@@ -117,12 +116,14 @@ namespace StarterAssets
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
+
+			speedText = GameObject.Find("SpeedText").GetComponent<TextMeshProUGUI>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
-			// reset our timeouts on start
-			_jumpTimeoutDelta = JumpTimeout;
+            // reset our timeouts on start
+            _jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 		}
 
@@ -130,7 +131,6 @@ namespace StarterAssets
 		{
 
             Move();
-			ManageUIEffect();
             JumpAndGravity();
             GroundedCheck();
 
@@ -138,7 +138,11 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+			if (!GameController.Instance.isPaused)
+			{
+                CameraRotation();
+            }
+			
 		}
 
 		private void GroundedCheck()
@@ -150,6 +154,7 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
+
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
 			{
@@ -236,7 +241,7 @@ namespace StarterAssets
 
 			if (_input.sprint && !isCrouching)
 			{
-				isSliding = false;
+
                 return SprintSpeed;
             }
 				
@@ -244,7 +249,7 @@ namespace StarterAssets
 			{
 				if (previousSpeed >= CrouchSpeed)
 				{
-					isSliding = true;
+
 					if (!alreadyBoosted)
 					{
 						float res = previousSpeed + slideBoost;
@@ -256,7 +261,7 @@ namespace StarterAssets
 				}
 				else
 				{
-					isSliding = false;
+
                     return CrouchSpeed;
 				}
 				
@@ -332,17 +337,6 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
-		private void ManageUIEffect()
-		{
-			if (isSliding)
-			{
-				slidingEffect.SetActive(true);
-			}
-			else
-			{
-                slidingEffect.SetActive(false);
-            }
-		}
 
     }
 }
