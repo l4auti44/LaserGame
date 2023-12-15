@@ -5,16 +5,23 @@ using UnityEngine;
 public class MovePlataform : Target
 {
     [SerializeField] private GameObject plataform;
+    private MoveAtoB plataformScript;
+
+    private void Start()
+    {
+        plataformScript = plataform.GetComponent<MoveAtoB>();
+        plataformScript.enabled = false;
+    }
 
     override
     public void DoAction()
     {
-        plataform.GetComponent<MoveAtoB>().enabled = true;
+        plataformScript.enabled = true;
     }
 
     override
     public void Undo()
     {
-        plataform.GetComponent<MoveAtoB>().enabled = false;
+        plataformScript.enabled = false;
     }
 }
