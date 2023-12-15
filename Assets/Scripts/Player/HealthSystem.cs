@@ -8,7 +8,7 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private  bool DEBUG = false;
     [SerializeField] private  float playerHealth = 100f;
-    [SerializeField] private  Slider healthBar;
+    private  Slider healthBar;
     private bool isTakingDamage = false;
     [SerializeField] private float invincibilityTime = 1f;
     private float _invicibilityTime;
@@ -26,6 +26,8 @@ public class HealthSystem : MonoBehaviour
             instance = this;
         }
     }
+
+    
     public void TakeDamage(float damage)
     {
         if (!isTakingDamage)
@@ -62,6 +64,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
+        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         _invicibilityTime = invincibilityTime;
     }
     private void Update()
