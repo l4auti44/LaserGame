@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6223,7 +6223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4041765378854372, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 81.463
+      value: 81.445
       objectReference: {fileID: 0}
     - target: {fileID: 4041765378854372, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6269,6 +6269,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1661273084}
+    - targetCorrespondingSourceObject: {fileID: 1142770143751240, guid: d31d5e07362494e468582cf3e3d08eaf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1661273085}
   m_SourcePrefab: {fileID: 100100000, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
 --- !u!1 &1661273083 stripped
 GameObject:
@@ -6289,6 +6293,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plataform: {fileID: 2075386523}
+--- !u!65 &1661273085
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661273083}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7137427, y: 0.67880946, z: 0.07629169}
+  m_Center: {x: 0.00000008940697, y: 0.000000029802322, z: 0.01690919}
 --- !u!1001 &1692427437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8098,6 +8123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492311622728224515, guid: a4b16400670ff114a8fed08a13ed8ac0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8957652656094484401, guid: a4b16400670ff114a8fed08a13ed8ac0,
         type: 3}
