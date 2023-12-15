@@ -219,7 +219,6 @@ MonoBehaviour:
   SprintSpeed: 12
   CrouchSpeed: 3
   RotationSpeed: 3
-  SpeedChangeRate: 10
   JumpHeight: 1.2
   Gravity: -25
   JumpTimeout: 0.1
@@ -233,8 +232,10 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 1608508078006691004}
   TopClamp: 89
   BottomClamp: -89
-  slideTime: 0.5
+  slideTime: 0.7
   speedText: {fileID: 0}
+  slideBoost: 3
+  slidingEffect: {fileID: 0}
 --- !u!114 &3046968097561126106
 MonoBehaviour:
   m_ObjectHideFlags: 0
