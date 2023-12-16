@@ -91,4 +91,11 @@ public class GameController : MonoBehaviour
         Destroy(this.gameObject);
 
     }
+
+    public void Win()
+    {
+        TriggerPause();
+        pauseMenu.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "YOU WIN!";
+        pauseMenu.transform.GetChild(2).gameObject.SetActive(false);
+    }
 }
