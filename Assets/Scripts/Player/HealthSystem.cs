@@ -38,9 +38,10 @@ public class HealthSystem : MonoBehaviour
             UpdateText();
             if (playerHealth <= 0)
             {
-                playerHealth = 0;
+
                 UpdateText();
                 Die();
+                playerHealth = 0;
             }
         }
     }
@@ -70,7 +71,7 @@ public class HealthSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (isTakingDamage)
+        if (isTakingDamage && !GameController.Instance.isPaused)
         {
             _invicibilityTime -= Time.deltaTime;
             if (_invicibilityTime <= 0)
