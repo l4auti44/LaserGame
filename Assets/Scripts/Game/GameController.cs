@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour
 {
     private GameObject pauseMenu;
     [HideInInspector] public static GameController Instance;
     [HideInInspector] public bool isPaused = false;
-    public float timer;
+    [HideInInspector] public float timer;
 
     // Start is called before the first frame update
     void Awake()
