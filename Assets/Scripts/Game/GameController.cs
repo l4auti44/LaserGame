@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     private GameObject pauseMenu;
     [HideInInspector] public static GameController Instance;
     [HideInInspector] public bool isPaused = false;
-    
+    public float timer;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +37,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //GENERAL TIMER
+        timer += Time.deltaTime;
+
 
         if (isPaused)
         {
