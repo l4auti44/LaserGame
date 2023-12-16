@@ -515,9 +515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f28f44ab5c4fcc49b041559a27edc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level1: {fileID: 2064130704}
-  level2: {fileID: 1323490382}
-  level3: {fileID: 627024401}
+  level1: {fileID: 2104323784}
+  level2: {fileID: 1374347916}
+  level3: {fileID: 1873845462}
 --- !u!4 &206971680
 Transform:
   m_ObjectHideFlags: 0
@@ -1813,7 +1813,7 @@ GameObject:
   - component: {fileID: 1374347917}
   - component: {fileID: 1374347916}
   m_Layer: 5
-  m_Name: Text (TMP) (4)
+  m_Name: BestTimer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2069,7 +2069,7 @@ GameObject:
   - component: {fileID: 1873845463}
   - component: {fileID: 1873845462}
   m_Layer: 5
-  m_Name: Text (TMP) (6)
+  m_Name: BestTimer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2474,7 +2474,7 @@ GameObject:
   - component: {fileID: 2104323785}
   - component: {fileID: 2104323784}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: BestTimer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
