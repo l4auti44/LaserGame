@@ -88,7 +88,8 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
-
+		private GameObject Lainey;
+		private GameObject[] LaineyStates;
         private bool IsCurrentDeviceMouse
 		{
 			get
@@ -112,7 +113,10 @@ namespace StarterAssets
 
 		private void Start()
 		{
-			_controller = GetComponent<CharacterController>();
+			ManageLainey();
+			LaineyDisableAll();
+
+            _controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
@@ -143,6 +147,31 @@ namespace StarterAssets
                 CameraRotation();
             }
 			
+		}
+
+		private void ManageLainey()
+		{
+            Lainey = GameObject.Find("Lainey");
+			LaineyStates = new GameObject[5];
+			LaineyStates[0] = Lainey.transform.GetChild(0).gameObject; //Idle
+			LaineyStates[1] = Lainey.transform.GetChild(1).gameObject; //Run
+			LaineyStates[2] = Lainey.transform.GetChild(2).gameObject; //Slide
+			LaineyStates[3] = Lainey.transform.GetChild(3).gameObject; //Air
+			LaineyStates[4] = Lainey.transform.GetChild(4).gameObject; //Die
+
+        }
+
+		private void LaineyDisableAll()
+		{
+			for (int i = 0; i < LaineyStates.Length; i++)
+			{
+				LaineyStates[i].SetActive(false);
+			}
+		}
+
+		private void LaineyEnable(int num)
+		{
+			LaineyStates[num].SetActive(true);
 		}
 
 		private void GroundedCheck()
@@ -241,7 +270,8 @@ namespace StarterAssets
 
 			if (_input.sprint && !isCrouching)
 			{
-
+				LaineyDisableAll();
+				LaineyEnable(1);
                 return SprintSpeed;
             }
 				
@@ -256,19 +286,27 @@ namespace StarterAssets
 						alreadyBoosted = true;
 						return res;
 					}
+                    LaineyDisableAll();
+                    LaineyEnable(2);
                     float blend = Mathf.Pow(0.5f, Time.deltaTime * slideTime);
                     return Mathf.Lerp(CrouchSpeed, previousSpeed, blend);
 				}
 				else
 				{
-
+                    LaineyDisableAll();
+                    LaineyEnable(2);
                     return CrouchSpeed;
 				}
 				
 			}
-				
-            else
+
+			else
+			{
+                LaineyDisableAll();
+                LaineyEnable(0);
                 return MoveSpeed;
+            }
+                
         }
 		private void JumpAndGravity()
 		{
@@ -298,8 +336,10 @@ namespace StarterAssets
 			}
 			else
 			{
-				// reset the jump timeout timer
-				_jumpTimeoutDelta = JumpTimeout;
+                LaineyDisableAll();
+                LaineyEnable(3);
+                // reset the jump timeout timer
+                _jumpTimeoutDelta = JumpTimeout;
 
 				// fall timeout
 				if (_fallTimeoutDelta >= 0.0f)
