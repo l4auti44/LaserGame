@@ -54,6 +54,7 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         if (DEBUG) Debug.Log("Player Died!");
+        GameController.Instance.Die();
 
     }
 
