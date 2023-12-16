@@ -8750,6 +8750,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerPause
       objectReference: {fileID: 0}
+    - target: {fileID: 4069764491389393511, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 40.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069764491389393511, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -1077.9785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069764491389393511, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: aa8011ff543fc2a4b8385df4ca976a0e,
+        type: 2}
+    - target: {fileID: 4069764491389393511, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069764491389393511, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5868708748489741586, guid: aa8011ff543fc2a4b8385df4ca976a0e,
+        type: 2}
+    - target: {fileID: 4069764491389393511, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104831456973372785, guid: 083778e82544aa543a92c0dd256f9eb8,
         type: 3}
       propertyPath: m_IsActive
