@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        #region FindObjects
         player = GameObject.Find("Player");
         virtualCamera = GameObject.Find("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>();
         audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
@@ -33,8 +34,9 @@ public class GameController : MonoBehaviour
         fovNum = pauseMenu.transform.Find("Fov Number").GetComponent<TextMeshProUGUI>();
         musicNum = pauseMenu.transform.Find("Music Number").GetComponent<TextMeshProUGUI>();
 
+        #endregion
 
-        
+        #region PlayerPrefs
         if (PlayerPrefs.GetFloat("sensibility") == 0)
         {
             PlayerPrefs.SetFloat("sensibility", player.GetComponent<FirstPersonController>().RotationSpeed);
@@ -62,7 +64,8 @@ public class GameController : MonoBehaviour
         music.value = audioSource.volume;
         musicNum.text = (music.value * 100).ToString("00");
 
-        
+        #endregion
+
         pauseMenu.SetActive(false);
         
     }
@@ -149,6 +152,13 @@ public class GameController : MonoBehaviour
 
     public void Win()
     {
+        if (player.GetComponent<HealthSystem>().playerHealth == 100f)
+        {
+            //HITLESS
+            player.GetComponent<FirstPersonController>().LaineyEnable(5);
+            player.GetComponent<FirstPersonController>().enabled = false;
+
+        }
         TriggerPause();
         pauseMenu.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "YOU WIN!";
         pauseMenu.transform.GetChild(2).gameObject.SetActive(false);

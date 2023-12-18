@@ -154,12 +154,13 @@ namespace StarterAssets
 		private void ManageLainey()
 		{
             Lainey = GameObject.Find("Lainey");
-			LaineyStates = new GameObject[5];
+			LaineyStates = new GameObject[6];
 			LaineyStates[0] = Lainey.transform.GetChild(0).gameObject; //Idle
 			LaineyStates[1] = Lainey.transform.GetChild(1).gameObject; //Run
 			LaineyStates[2] = Lainey.transform.GetChild(2).gameObject; //Slide
 			LaineyStates[3] = Lainey.transform.GetChild(3).gameObject; //Air
 			LaineyStates[4] = Lainey.transform.GetChild(4).gameObject; //Die
+			LaineyStates[5] = Lainey.transform.GetChild(5).gameObject; //Hitless
 
         }
 
@@ -171,8 +172,9 @@ namespace StarterAssets
 			}
 		}
 
-		private void LaineyEnable(int num)
+		public void LaineyEnable(int num)
 		{
+			LaineyDisableAll();
 			LaineyStates[num].SetActive(true);
 		}
 
@@ -272,7 +274,6 @@ namespace StarterAssets
 
 			if (_input.sprint && !isCrouching)
 			{
-				LaineyDisableAll();
 				LaineyEnable(1);
                 return SprintSpeed;
             }
@@ -289,14 +290,12 @@ namespace StarterAssets
 						alreadyBoosted = true;
 						return res;
 					}
-                    LaineyDisableAll();
                     LaineyEnable(2);
                     float blend = Mathf.Pow(0.5f, Time.deltaTime * slideTime);
                     return Mathf.Lerp(CrouchSpeed, previousSpeed, blend);
 				}
 				else
 				{
-                    LaineyDisableAll();
                     LaineyEnable(2);
                     return CrouchSpeed;
 				}
@@ -305,7 +304,6 @@ namespace StarterAssets
 
 			else
 			{
-                LaineyDisableAll();
                 LaineyEnable(0);
                 return MoveSpeed;
             }
@@ -339,7 +337,6 @@ namespace StarterAssets
 			}
 			else
 			{
-                LaineyDisableAll();
                 LaineyEnable(3);
                 // reset the jump timeout timer
                 _jumpTimeoutDelta = JumpTimeout;
