@@ -30,7 +30,6 @@ namespace StarterAssets
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		public float Gravity = -15.0f;
-
 		[Space(10)]
 		[Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
 		public float JumpTimeout = 0.1f;
@@ -62,6 +61,9 @@ namespace StarterAssets
         private TextMeshProUGUI speedText;
 		private bool alreadyBoosted = false;
 
+
+		private bool disableGroundCheck = false;
+		private float timerGroundCheck = 0.5f;
 
         // cinemachine
         private float _cinemachineTargetPitch;
@@ -135,10 +137,23 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			if (disableGroundCheck)
+			{
+				timerGroundCheck -= Time.deltaTime;
+			}
 
+			if (timerGroundCheck <= 0)
+			{
+				disableGroundCheck = false;
+
+            }
             Move();
             JumpAndGravity();
-            GroundedCheck();
+			if (!disableGroundCheck)
+			{
+                GroundedCheck();
+            }
+            
 
         }
 
@@ -214,8 +229,16 @@ namespace StarterAssets
 			float targetSpeed = SetTargetSpeed(_speed);
 			speedText.text = "speed: " + targetSpeed.ToString();
 
-			if (isCrouching) 
-				transform.localScale = new Vector3(1, 0.5f, 1);
+			if (isCrouching)
+			{
+				if (Grounded && !disableGroundCheck)
+				{
+					disableGroundCheck = true;
+				}
+                transform.localScale = new Vector3(1, 0.5f, 1);
+
+            }
+				
 			else
 				transform.localScale = Vector3.one;
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
@@ -280,7 +303,6 @@ namespace StarterAssets
 				
 			else if (isCrouching)
 			{
-				Debug.Log(previousSpeed);
 				if (previousSpeed > CrouchSpeed)
 				{
 
@@ -337,7 +359,11 @@ namespace StarterAssets
 			}
 			else
 			{
-                LaineyEnable(3);
+				if (!_input.crouch)
+				{
+                    LaineyEnable(3);
+                }
+                
                 // reset the jump timeout timer
                 _jumpTimeoutDelta = JumpTimeout;
 

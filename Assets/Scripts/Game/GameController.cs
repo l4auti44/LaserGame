@@ -16,12 +16,13 @@ public class GameController : MonoBehaviour
     [HideInInspector] public GameObject player;
     private CinemachineVirtualCamera virtualCamera;
     private AudioSource audioSource;
-    private TextMeshProUGUI sensNum, fovNum, musicNum;
+    private TextMeshProUGUI sensNum, fovNum, musicNum, generalTimer;
     // Start is called before the first frame update
 
     private void Start()
     {
         #region FindObjects
+        generalTimer = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         player = GameObject.Find("Player");
         virtualCamera = GameObject.Find("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>();
         audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
@@ -76,6 +77,7 @@ public class GameController : MonoBehaviour
         ManageSliders();
         //GENERAL TIMER
         timer += Time.deltaTime;
+        generalTimer.text = timer.ToString("00:00");
 
 
         if (isPaused)
