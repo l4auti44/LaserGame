@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour
         audioSource.volume = PlayerPrefs.GetFloat("music");
         
         music.value = audioSource.volume;
-        musicNum.text = (music.value * 100).ToString("000");
+        musicNum.text = (music.value * 100).ToString("00");
 
         
         pauseMenu.SetActive(false);
@@ -104,7 +104,7 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetFloat("music", audioSource.volume);
         fovNum.text = fov.value.ToString("00.0");
         sensNum.text = sensibility.value.ToString("00.0");
-        musicNum.text = (music.value * 100).ToString("000");
+        musicNum.text = (music.value * 100).ToString("00");
     }
 
 
