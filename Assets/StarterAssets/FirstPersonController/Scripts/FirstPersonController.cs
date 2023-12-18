@@ -279,7 +279,8 @@ namespace StarterAssets
 				
 			else if (isCrouching)
 			{
-				if (previousSpeed >= CrouchSpeed)
+				Debug.Log(previousSpeed);
+				if (previousSpeed > CrouchSpeed)
 				{
 
 					if (!alreadyBoosted)
