@@ -90,6 +90,7 @@ namespace StarterAssets
 
 		private GameObject Lainey;
 		private GameObject[] LaineyStates;
+		private GameController gameContr;
         private bool IsCurrentDeviceMouse
 		{
 			get
@@ -113,6 +114,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			gameContr = GameObject.Find("GameController").GetComponent<GameController>();
 			ManageLainey();
 			LaineyDisableAll();
 
@@ -142,7 +144,7 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			if (!GameController.Instance.isPaused)
+			if (!gameContr.isPaused)
 			{
                 CameraRotation();
             }

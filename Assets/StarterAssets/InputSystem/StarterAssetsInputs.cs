@@ -82,10 +82,9 @@ namespace StarterAssets
 
 		private void SetCursorState(bool newState)
 		{
-			if (!GameController.Instance.isPaused)
-			{
-                Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
-            }
+
+            Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+            
                 
 
 			

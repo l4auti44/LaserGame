@@ -39,7 +39,7 @@ public class Laser : MonoBehaviour
             laserPivot.transform.localScale = new Vector3(1, hit.distance, 1);
             if (hit.transform.CompareTag("Player"))
             {
-                HealthSystem.instance.TakeDamage(damage);
+                hit.transform.parent.GetComponent<HealthSystem>().TakeDamage(damage);
                 
 
             }

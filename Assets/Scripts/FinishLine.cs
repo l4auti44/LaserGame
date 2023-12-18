@@ -15,8 +15,9 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (GameController.Instance.timer < PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name))
-            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name, GameController.Instance.timer);
-        GameController.Instance.Win();
+        GameController gameCont = GameObject.Find("GameController").GetComponent<GameController>();
+        if (gameCont.timer < PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name))
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name, gameCont.timer);
+        gameCont.Win();
     }
 }

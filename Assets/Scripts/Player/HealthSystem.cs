@@ -7,26 +7,14 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private  bool DEBUG = false;
-    [SerializeField] private  float playerHealth = 100f;
+    [SerializeField] public  float playerHealth = 100f;
     private  Slider healthBar;
     private bool isTakingDamage = false;
     [SerializeField] private float invincibilityTime = 1f;
     private float _invicibilityTime;
-    public static HealthSystem instance;
+    private GameController gameContr;
     // Start is called before the first frame update
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
+    
     
     public void TakeDamage(float damage)
     {
@@ -55,7 +43,7 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         if (DEBUG) Debug.Log("Player Died!");
-        GameController.Instance.Die();
+        GameObject.Find("GameController").GetComponent<GameController>().Die();
 
     }
 
@@ -66,12 +54,13 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
+        gameContr = GameObject.Find("GameController").GetComponent<GameController>();
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         _invicibilityTime = invincibilityTime;
     }
     private void Update()
     {
-        if (isTakingDamage && !GameController.Instance.isPaused)
+        if (isTakingDamage && !gameContr.isPaused)
         {
             _invicibilityTime -= Time.deltaTime;
             if (_invicibilityTime <= 0)
