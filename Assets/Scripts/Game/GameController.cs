@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
         musicNum.text = (music.value * 100).ToString("00");
 
         #endregion
-
+        Time.timeScale = 1f;
         pauseMenu.SetActive(false);
         
     }
