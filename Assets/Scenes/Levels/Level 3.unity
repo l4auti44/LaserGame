@@ -7372,6 +7372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_DartBoard_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1142770143751240, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     - target: {fileID: 4041765378854372, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 42.479
@@ -10504,7 +10508,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -11627,7 +11631,7 @@ PrefabInstance:
     - target: {fileID: 5221127907030126856, guid: a4b16400670ff114a8fed08a13ed8ac0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.543
+      value: 3.94
       objectReference: {fileID: 0}
     - target: {fileID: 5221127907030126856, guid: a4b16400670ff114a8fed08a13ed8ac0,
         type: 3}
@@ -11716,7 +11720,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8492311622728224515, guid: a4b16400670ff114a8fed08a13ed8ac0, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7939595098419534409, guid: a4b16400670ff114a8fed08a13ed8ac0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3934811672229570526, guid: a4b16400670ff114a8fed08a13ed8ac0,
@@ -12702,7 +12707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointA: {fileID: 594384163}
-  speed: 1
+  speed: 0.6
   openDoor: 0
 --- !u!1001 &1352404810
 PrefabInstance:
