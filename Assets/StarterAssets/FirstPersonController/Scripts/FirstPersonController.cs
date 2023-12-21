@@ -62,8 +62,6 @@ namespace StarterAssets
 		private bool alreadyBoosted = false;
 
 
-		private bool disableGroundCheck = false;
-		private float timerGroundCheck = 0.5f;
 
         // cinemachine
         private float _cinemachineTargetPitch;
@@ -92,7 +90,6 @@ namespace StarterAssets
 
 		private GameObject Lainey;
 		private GameObject[] LaineyStates;
-		private GameController gameContr;
         private bool IsCurrentDeviceMouse
 		{
 			get
@@ -116,7 +113,6 @@ namespace StarterAssets
 
 		private void Start()
 		{
-			gameContr = GameObject.Find("GameController").GetComponent<GameController>();
 			ManageLainey();
 			LaineyDisableAll();
 
@@ -137,29 +133,20 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			if (disableGroundCheck)
-			{
-				timerGroundCheck -= Time.deltaTime;
-			}
 
-			if (timerGroundCheck <= 0)
-			{
-				disableGroundCheck = false;
 
-            }
             Move();
             JumpAndGravity();
-			if (!disableGroundCheck)
-			{
-                GroundedCheck();
-            }
+
+            GroundedCheck();
+            
             
 
         }
 
 		private void LateUpdate()
 		{
-			if (!gameContr.isPaused)
+			if (!GameController.isPaused)
 			{
                 CameraRotation();
             }
@@ -231,11 +218,8 @@ namespace StarterAssets
 
 			if (isCrouching)
 			{
-				if (Grounded && !disableGroundCheck)
-				{
-					disableGroundCheck = true;
-				}
-                transform.localScale = new Vector3(1, 0.5f, 1);
+
+				transform.localScale = new Vector3(1, 0.5f, 1);
 
             }
 				

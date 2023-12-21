@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     private GameObject pauseMenu;
-    [HideInInspector] public bool isPaused = false;
+    static public bool isPaused = false;
     [HideInInspector] public float timer;
     private Slider sensibility, fov, music;
 
@@ -120,12 +120,14 @@ public class GameController : MonoBehaviour
         pauseMenu.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "GAME PAUSED";
         if (Time.timeScale == 0)
         {
+            audioSource.Play();
             isPaused = false;
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
         else
         {
+            audioSource.Stop(); 
             isPaused = true;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;

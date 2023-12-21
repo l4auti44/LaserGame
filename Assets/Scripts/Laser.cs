@@ -12,12 +12,14 @@ public class Laser : MonoBehaviour
 
     private bool firstRay = true, hitingTarget = false;
     private GameObject previousHit;
+    private AudioSource damageAudio;
     //[SerializeField] private float knockbackStrenght = 4f;
 
     //[SerializeField] private bool DEBUG = false;
     // Start is called before the first frame update
     void Start()
     {
+        damageAudio = GetComponent<AudioSource>();
         laserPivot.transform.localScale = new Vector3(1, laserMaxDistance, 1);
         
     }
@@ -39,9 +41,18 @@ public class Laser : MonoBehaviour
             laserPivot.transform.localScale = new Vector3(1, hit.distance, 1);
             if (hit.transform.CompareTag("Player"))
             {
-                hit.transform.parent.GetComponent<HealthSystem>().TakeDamage(damage);
+                if (!damageAudio.isPlaying && !GameController.isPaused)
+                {
+                    damageAudio.Play();
+                }
                 
+                hit.transform.parent.GetComponent<HealthSystem>().TakeDamage(damage);
 
+
+            }
+            else
+            {
+                damageAudio.Stop();
             }
             if (hit.transform.CompareTag("Target"))
             {

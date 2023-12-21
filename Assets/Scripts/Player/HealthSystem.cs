@@ -12,8 +12,9 @@ public class HealthSystem : MonoBehaviour
     private bool isTakingDamage = false;
     [SerializeField] private float invincibilityTime = 1f;
     private float _invicibilityTime;
-    private GameController gameContr;
+    private AudioSource dieAudio;
     // Start is called before the first frame update
+    
     
     
     public void TakeDamage(float damage)
@@ -43,6 +44,7 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         if (DEBUG) Debug.Log("Player Died!");
+        dieAudio.Play();
         GameObject.Find("GameController").GetComponent<GameController>().Die();
 
     }
@@ -54,13 +56,13 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
-        gameContr = GameObject.Find("GameController").GetComponent<GameController>();
+        dieAudio = GetComponent<AudioSource>();
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         _invicibilityTime = invincibilityTime;
     }
     private void Update()
     {
-        if (isTakingDamage && !gameContr.isPaused)
+        if (isTakingDamage && !GameController.isPaused)
         {
             _invicibilityTime -= Time.deltaTime;
             if (_invicibilityTime <= 0)
