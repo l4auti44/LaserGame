@@ -4317,10 +4317,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5600007186000543880, guid: 4f3c3e5ee4b6c83499c340069d619dbf,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a4a418214cc773c4da89183fb2db0a3f, type: 3}
     - target: {fileID: 5717177954968772922, guid: 4f3c3e5ee4b6c83499c340069d619dbf,
         type: 3}
       propertyPath: damage
-      value: 1
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8451,8 +8456,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8868141230417014885, guid: fccf57967a3d8d1428c9a896725b0135,
         type: 3}
+      propertyPath: playerHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868141230417014885, guid: fccf57967a3d8d1428c9a896725b0135,
+        type: 3}
       propertyPath: invincibilityTime
-      value: 0.009
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
         type: 3}
