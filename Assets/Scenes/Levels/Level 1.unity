@@ -8452,7 +8452,7 @@ PrefabInstance:
     - target: {fileID: 8868141230417014885, guid: fccf57967a3d8d1428c9a896725b0135,
         type: 3}
       propertyPath: invincibilityTime
-      value: 0.00004
+      value: 0.009
       objectReference: {fileID: 0}
     - target: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
         type: 3}
