@@ -144,13 +144,7 @@ public class GameController : MonoBehaviour
         pauseMenu.transform.GetChild(2).gameObject.SetActive(false);
     }
 
-    public void QuitToMenu()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
 
-
-    }
 
 
 

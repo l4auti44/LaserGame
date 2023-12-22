@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -12,13 +13,25 @@ public class HealthSystem : MonoBehaviour
     private bool isTakingDamage = false;
     [SerializeField] private float invincibilityTime = 1f;
     private float _invicibilityTime;
-    private AudioSource dieAudio;
+    private AudioSource audioSource;
+    [SerializeField] private AudiosClip[] audiosClip;
     // Start is called before the first frame update
-    
-    
+
+    [Serializable]
+    public struct AudiosClip
+    {
+        public string name;
+        public AudioClip clip;
+    }
     
     public void TakeDamage(float damage)
     {
+        
+        if (!audioSource.isPlaying && !GameController.isPaused)
+        {
+            SetAudioClip("damage");
+            audioSource.Play();
+        }
         if (!isTakingDamage)
         {
             if (DEBUG) Debug.Log("taking damage");
@@ -44,7 +57,8 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         if (DEBUG) Debug.Log("Player Died!");
-        dieAudio.Play();
+        SetAudioClip("death");
+        audioSource.Play();
         GameObject.Find("GameController").GetComponent<GameController>().Die();
 
     }
@@ -56,7 +70,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
-        dieAudio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         _invicibilityTime = invincibilityTime;
     }
@@ -71,5 +85,19 @@ public class HealthSystem : MonoBehaviour
                 _invicibilityTime = invincibilityTime;
             }
         }
+    }
+
+    private void SetAudioClip(string name) 
+    {
+        for (int i = 0; i < audiosClip.Length; i++)
+        {
+            if (audiosClip[i].name == name)
+            {
+                audioSource.clip = audiosClip[i].clip;
+                break;
+            }
+
+        }
+        
     }
 }

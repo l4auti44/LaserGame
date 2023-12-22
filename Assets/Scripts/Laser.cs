@@ -41,10 +41,10 @@ public class Laser : MonoBehaviour
             laserPivot.transform.localScale = new Vector3(1, hit.distance, 1);
             if (hit.transform.CompareTag("Player"))
             {
-                if (!damageAudio.isPlaying && !GameController.isPaused)
-                {
-                    damageAudio.Play();
-                }
+                //if (!damageAudio.isPlaying && !GameController.isPaused)
+                //{
+                    //damageAudio.Play();
+                //}
                 
                 hit.transform.parent.GetComponent<HealthSystem>().TakeDamage(damage);
 
