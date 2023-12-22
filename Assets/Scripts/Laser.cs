@@ -50,10 +50,6 @@ public class Laser : MonoBehaviour
 
 
             }
-            else
-            {
-                damageAudio.Stop();
-            }
             if (hit.transform.CompareTag("Target"))
             {
                 hitingTarget = true;
