@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,15 +15,18 @@ public class LoadBestTimes : MonoBehaviour
         float text1 = PlayerPrefs.GetFloat("Level 1");
         if (PlayerPrefs.HasKey("Level 1"))
         {
-            level1.text = PlayerPrefs.GetFloat("Level 1").ToString("00:00");
+            var ts1 = TimeSpan.FromSeconds(PlayerPrefs.GetFloat("Level 1"));
+            level1.text = string.Format("{0:00}:{1:00}", ts1.TotalMinutes, ts1.Seconds);
         }
         if (PlayerPrefs.HasKey("Level 2"))
         {
-            level2.text = PlayerPrefs.GetFloat("Level 2").ToString("00:00");
+            var ts2 = TimeSpan.FromSeconds(PlayerPrefs.GetFloat("Level 2"));
+            level2.text = string.Format("{0:00}:{1:00}", ts2.TotalMinutes, ts2.Seconds);
         }
         if (PlayerPrefs.HasKey("Level 3"))
         {
-            level3.text = PlayerPrefs.GetFloat("Level 3").ToString("00:00");
+            var ts3 = TimeSpan.FromSeconds(PlayerPrefs.GetFloat("Level 3"));
+            level3.text = string.Format("{0:00}:{1:00}", ts3.TotalMinutes, ts3.Seconds);
         }
         
 

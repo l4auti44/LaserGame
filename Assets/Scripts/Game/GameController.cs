@@ -1,6 +1,7 @@
 
 using Cinemachine;
 using StarterAssets;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -90,7 +91,8 @@ public class GameController : MonoBehaviour
         ManageSliders();
         //GENERAL TIMER
         timer += Time.deltaTime;
-        generalTimer.text = timer.ToString("00:00");
+        var ts = TimeSpan.FromSeconds(timer);
+        generalTimer.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds);
 
 
         if (isPaused)
