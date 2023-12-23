@@ -9,7 +9,7 @@ public class ConfigurationManager : MonoBehaviour
     [SerializeField] private Slider music;
     [SerializeField] private Slider fov;
     [SerializeField] private Slider sensibility;
-    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private TextMeshProUGUI sensNum;
     [SerializeField] private TextMeshProUGUI fovNum;
     [SerializeField] private TextMeshProUGUI musicNum;
@@ -37,7 +37,7 @@ public class ConfigurationManager : MonoBehaviour
     void Update()
     {
         PlayerPrefs.SetFloat("music", music.value);
-        audio.volume = music.value;
+        audioSource.volume = music.value;
         PlayerPrefs.SetFloat("fov", fov.value);
         PlayerPrefs.SetFloat("sensibility", sensibility.value);
         musicNum.text = (PlayerPrefs.GetFloat("music") * 100).ToString("00");

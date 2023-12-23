@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     private AudioSource audioSource;
     private TextMeshProUGUI sensNum, fovNum, musicNum, generalTimer;
+    private HealthSystem healthSyst;
     // Start is called before the first frame update
 
     private void Start()
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
         #region FindObjects
         generalTimer = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         player = GameObject.Find("Player");
+        healthSyst = player.GetComponent<HealthSystem>();
         virtualCamera = GameObject.Find("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>();
         audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
 
@@ -92,7 +94,7 @@ public class GameController : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && healthSyst.playerHealth > 0)
         {
             TriggerPause();
         }   
@@ -128,7 +130,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            audioSource.Stop(); 
+            audioSource.Pause(); 
             isPaused = true;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
@@ -151,7 +153,7 @@ public class GameController : MonoBehaviour
 
     public void Win()
     {
-        if (player.GetComponent<HealthSystem>().playerHealth == 100f)
+        if (healthSyst.playerHealth == 100f)
         {
             //HITLESS
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + " hitless", 1);
