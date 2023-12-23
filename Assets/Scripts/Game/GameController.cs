@@ -12,13 +12,14 @@ public class GameController : MonoBehaviour
     private GameObject pauseMenu;
     static public bool isPaused = false;
     [HideInInspector] public float timer;
-    private Slider sensibility, fov, music;
+    private Slider sensibility, fov, music, soundEffect;
 
     [HideInInspector] public GameObject player;
     private CinemachineVirtualCamera virtualCamera;
     private AudioSource audioSource;
-    private TextMeshProUGUI sensNum, fovNum, musicNum, generalTimer;
+    private TextMeshProUGUI sensNum, fovNum, musicNum, soundEffectNum,generalTimer;
     private HealthSystem healthSyst;
+    private AudioSource playerAudioSource;
     // Start is called before the first frame update
 
     private void Start()
@@ -29,19 +30,22 @@ public class GameController : MonoBehaviour
         healthSyst = player.GetComponent<HealthSystem>();
         virtualCamera = GameObject.Find("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>();
         audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
+        playerAudioSource = player.GetComponent<AudioSource>();
 
         pauseMenu = GameObject.Find("PauseMenu");
         music = pauseMenu.transform.Find("Music").GetComponent<Slider>();
         fov = pauseMenu.transform.Find("Fov").GetComponent<Slider>();
         sensibility = pauseMenu.transform.Find("Sensibility").GetComponent<Slider>();
+        soundEffect = pauseMenu.transform.Find("SoundEffect").GetComponent<Slider>();
         sensNum = pauseMenu.transform.Find("Sensibility Number").GetComponent<TextMeshProUGUI>();
         fovNum = pauseMenu.transform.Find("Fov Number").GetComponent<TextMeshProUGUI>();
         musicNum = pauseMenu.transform.Find("Music Number").GetComponent<TextMeshProUGUI>();
+        soundEffectNum = pauseMenu.transform.Find("SoundEffect Number").GetComponent <TextMeshProUGUI>();
 
         #endregion
 
         #region PlayerPrefs
-        if (PlayerPrefs.GetFloat("sensibility") == 0)
+        if (!PlayerPrefs.HasKey("sensibility"))
         {
             PlayerPrefs.SetFloat("sensibility", player.GetComponent<FirstPersonController>().RotationSpeed);
         }
@@ -52,7 +56,7 @@ public class GameController : MonoBehaviour
         sensibility.value = player.GetComponent<FirstPersonController>().RotationSpeed;
         sensNum.text = sensibility.value.ToString("00.0");
         
-        if (PlayerPrefs.GetFloat("fov") == 0)
+        if (!PlayerPrefs.HasKey("fov"))
         {
             PlayerPrefs.SetFloat("fov", virtualCamera.m_Lens.FieldOfView);
         }
@@ -63,6 +67,12 @@ public class GameController : MonoBehaviour
         fov.value = virtualCamera.m_Lens.FieldOfView;
         fovNum.text = fov.value.ToString("00.0");
 
+        if (!PlayerPrefs.HasKey("soundEffect"))
+        {
+            PlayerPrefs.SetFloat("soundEffect", 1f);
+        }
+        soundEffect.value = PlayerPrefs.GetFloat("soundEffect");
+        soundEffectNum.text = (soundEffect.value * 100).ToString("00");
         audioSource.volume = PlayerPrefs.GetFloat("music");
         
         music.value = audioSource.volume;
@@ -107,12 +117,15 @@ public class GameController : MonoBehaviour
         player.GetComponent<FirstPersonController>().RotationSpeed = sensibility.value;
         virtualCamera.m_Lens.FieldOfView = fov.value;
         audioSource.volume = music.value;
+        playerAudioSource.volume = soundEffect.value;
         PlayerPrefs.SetFloat("sensibility", player.GetComponent<FirstPersonController>().RotationSpeed);
         PlayerPrefs.SetFloat("fov", virtualCamera.m_Lens.FieldOfView = fov.value);
         PlayerPrefs.SetFloat("music", audioSource.volume);
+        PlayerPrefs.SetFloat("soundEffect", playerAudioSource.volume);
         fovNum.text = fov.value.ToString("00.0");
         sensNum.text = sensibility.value.ToString("00.0");
         musicNum.text = (music.value * 100).ToString("00");
+        soundEffectNum.text = (playerAudioSource.volume * 100).ToString("00");
     }
 
 

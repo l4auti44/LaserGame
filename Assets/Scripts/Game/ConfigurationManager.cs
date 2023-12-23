@@ -9,10 +9,12 @@ public class ConfigurationManager : MonoBehaviour
     [SerializeField] private Slider music;
     [SerializeField] private Slider fov;
     [SerializeField] private Slider sensibility;
+    [SerializeField] private Slider soundEffect;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TextMeshProUGUI sensNum;
     [SerializeField] private TextMeshProUGUI fovNum;
     [SerializeField] private TextMeshProUGUI musicNum;
+    [SerializeField] private TextMeshProUGUI soundEffectNum;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,11 @@ public class ConfigurationManager : MonoBehaviour
             PlayerPrefs.SetFloat("sensibility", 3f);
         }
         sensibility.value = PlayerPrefs.GetFloat("sensibility");
+        if (!PlayerPrefs.HasKey("soundEffect"))
+        {
+            PlayerPrefs.SetFloat("soundEffect", 1f);
+        }
+        soundEffect.value = PlayerPrefs.GetFloat("soundEffect");
     }
 
     // Update is called once per frame
@@ -40,7 +47,9 @@ public class ConfigurationManager : MonoBehaviour
         audioSource.volume = music.value;
         PlayerPrefs.SetFloat("fov", fov.value);
         PlayerPrefs.SetFloat("sensibility", sensibility.value);
+        PlayerPrefs.SetFloat("soundEffect", soundEffect.value);
         musicNum.text = (PlayerPrefs.GetFloat("music") * 100).ToString("00");
+        soundEffectNum.text = (PlayerPrefs.GetFloat("soundEffect") * 100).ToString("00");
         fovNum.text = PlayerPrefs.GetFloat("fov").ToString("00.0");
         sensNum.text = PlayerPrefs.GetFloat("sensibility").ToString("00.0");
     }
