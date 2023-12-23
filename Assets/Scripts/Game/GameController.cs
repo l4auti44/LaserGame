@@ -3,6 +3,7 @@ using Cinemachine;
 using StarterAssets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -153,9 +154,15 @@ public class GameController : MonoBehaviour
         if (player.GetComponent<HealthSystem>().playerHealth == 100f)
         {
             //HITLESS
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + " hitless", 1);
             player.GetComponent<FirstPersonController>().LaineyEnable(5);
             player.GetComponent<FirstPersonController>().enabled = false;
 
+        }
+        //Time Achievement
+        if (timer <= 30f)
+        {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + " time", 1);
         }
         TriggerPause();
         pauseMenu.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "YOU WIN!";
