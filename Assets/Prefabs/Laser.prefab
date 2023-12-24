@@ -175,7 +175,7 @@ MonoBehaviour:
   laserOrigin: {fileID: 1537450471730118383}
   laserPivot: {fileID: 2359628930512016673}
   laserMaxDistance: 30
-  damage: 12
+  damage: 20
 --- !u!82 &5600007186000543880
 AudioSource:
   m_ObjectHideFlags: 0

@@ -17776,8 +17776,18 @@ PrefabInstance:
     - target: {fileID: 8868141230417014885, guid: fccf57967a3d8d1428c9a896725b0135,
         type: 3}
       propertyPath: invincibilityTime
-      value: 0.00004
+      value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 8868141230417014885, guid: fccf57967a3d8d1428c9a896725b0135,
+        type: 3}
+      propertyPath: audiosClip.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fa35850dd062fbb4bb41e407e07cc481, type: 3}
+    - target: {fileID: 8868141230417014885, guid: fccf57967a3d8d1428c9a896725b0135,
+        type: 3}
+      propertyPath: audiosClip.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a4a418214cc773c4da89183fb2db0a3f, type: 3}
     - target: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
         type: 3}
       propertyPath: m_Name
