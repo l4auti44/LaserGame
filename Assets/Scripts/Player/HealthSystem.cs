@@ -15,6 +15,7 @@ public class HealthSystem : MonoBehaviour
     private float _invicibilityTime;
     private AudioSource audioSource;
     [SerializeField] private AudiosClip[] audiosClip;
+    private RawImage damageIndicator;
     // Start is called before the first frame update
 
     [Serializable]
@@ -34,6 +35,7 @@ public class HealthSystem : MonoBehaviour
         }
         if (!isTakingDamage)
         {
+            damageIndicator.color = new Color(255, 255, 255, 0.25f);
             if (DEBUG) Debug.Log("taking damage");
             playerHealth -= damage;
             isTakingDamage = true;
@@ -73,6 +75,8 @@ public class HealthSystem : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         _invicibilityTime = invincibilityTime;
+        damageIndicator = GameObject.Find("DamageIndicator").GetComponent<RawImage>();
+        damageIndicator.color = new Color(255, 255, 255, 0f);
     }
     private void Update()
     {
@@ -82,6 +86,7 @@ public class HealthSystem : MonoBehaviour
             if (_invicibilityTime <= 0)
             {
                 isTakingDamage = false;
+                damageIndicator.color = new Color(255, 255, 255, 0f);
                 _invicibilityTime = invincibilityTime;
             }
         }
