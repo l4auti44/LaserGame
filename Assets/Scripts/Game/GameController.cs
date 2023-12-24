@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
         //GENERAL TIMER
         timer += Time.deltaTime;
         var ts = TimeSpan.FromSeconds(timer);
-        generalTimer.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds);
+        generalTimer.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
 
 
         if (isPaused)

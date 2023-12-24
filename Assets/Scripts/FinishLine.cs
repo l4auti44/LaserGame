@@ -1,3 +1,5 @@
+using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,7 +23,9 @@ public class FinishLine : MonoBehaviour
         {
             PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name, gameCont.timer);
             highscoreText.SetActive(true);
-            highscoreText.GetComponent<TextMeshProUGUI>().text = "New HighScore: " + PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name).ToString("00:00");
+            var ts = TimeSpan.FromSeconds(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name));
+            var highscore = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+            highscoreText.GetComponent<TextMeshProUGUI>().text = "New HighScore: " + highscore;
         }
         else
         {
@@ -30,7 +34,9 @@ public class FinishLine : MonoBehaviour
                 PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name, gameCont.timer);
                 
                 highscoreText.SetActive(true);
-                highscoreText.GetComponent<TextMeshProUGUI>().text = "New HighScore: " + PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name).ToString("00:00");
+                var ts = TimeSpan.FromSeconds(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name));
+                var highscore = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+                highscoreText.GetComponent<TextMeshProUGUI>().text = "New HighScore: " + highscore;
             }
                 
 
