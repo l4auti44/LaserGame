@@ -13,6 +13,9 @@ public class Laser : MonoBehaviour
     private bool firstRay = true, hitingTarget = false;
     private GameObject previousHit;
     private AudioSource damageAudio;
+
+    [SerializeField] AK.Wwise.Event damaged;
+
     //[SerializeField] private float knockbackStrenght = 4f;
 
     //[SerializeField] private bool DEBUG = false;
@@ -31,8 +34,11 @@ public class Laser : MonoBehaviour
         Ray ray = new Ray(laserOrigin.position, laserOrigin.up);
         Debug.DrawRay(ray.origin, ray.direction * laserMaxDistance, Color.red);
 
+       
+
         if (Physics.Raycast(ray, out hit, laserMaxDistance))
         {
+          
             if (firstRay)
             {
                 previousHit = hit.transform.gameObject;
@@ -41,6 +47,7 @@ public class Laser : MonoBehaviour
             laserPivot.transform.localScale = new Vector3(1, hit.distance, 1);
             if (hit.transform.CompareTag("Player"))
             {
+            
                 //if (!damageAudio.isPlaying && !GameController.isPaused)
                 //{
                     //damageAudio.Play();

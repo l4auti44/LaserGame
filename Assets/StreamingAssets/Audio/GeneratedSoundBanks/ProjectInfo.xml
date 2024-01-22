@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="lasers" GUID="{02D81E46-FA94-4B0C-B944-2ED1ECD17A4B}" Generator="2023.1.0.8367"/>
+	<CacheRoot>../../../../../../../../Documents/WwiseProjects/lasers/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Mac" GUID="{83668BE3-FB37-4B63-8D1C-FFE55D143989}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="../../../../../../../../Documents/WwiseProjects/lasers/GeneratedSoundBanks/Mac"/>
+		<Platform Name="Windows" GUID="{03BA72AC-A25C-4356-BBBC-F049744A37E3}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="../../../../../../../../Documents/WwiseProjects/lasers/GeneratedSoundBanks/Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{A1BFF630-74C2-42B7-853E-99367C373E40}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{865C495F-3236-FE3C-03EA-516B6FD46C36}</FileHash>
+</ProjectInfo>

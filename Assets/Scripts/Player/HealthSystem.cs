@@ -18,6 +18,9 @@ public class HealthSystem : MonoBehaviour
     private RawImage damageIndicator;
     // Start is called before the first frame update
 
+    public AK.Wwise.Event die;
+    public AK.Wwise.Event damaged;
+
     [Serializable]
     public struct AudiosClip
     {
@@ -30,8 +33,9 @@ public class HealthSystem : MonoBehaviour
         
         if (!audioSource.isPlaying && !GameController.isPaused)
         {
-            SetAudioClip("damage");
-            audioSource.Play();
+            damaged.Post(gameObject);
+           // SetAudioClip("damage");
+           // audioSource.Play();
         }
         if (!isTakingDamage)
         {
@@ -59,8 +63,9 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         if (DEBUG) Debug.Log("Player Died!");
-        SetAudioClip("death");
-        audioSource.Play();
+        // SetAudioClip("death");
+        // audioSource.Play();
+        die.Post(gameObject); //play death sound effect
         GameObject.Find("GameController").GetComponent<GameController>().Die();
 
     }

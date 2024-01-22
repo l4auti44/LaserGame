@@ -176,6 +176,11 @@ MonoBehaviour:
   laserPivot: {fileID: 2359628930512016673}
   laserMaxDistance: 30
   damage: 20
+  damaged:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 44d155c9e96d9445fb3a2bbb0bbd54ec,
+      type: 2}
 --- !u!82 &5600007186000543880
 AudioSource:
   m_ObjectHideFlags: 0
