@@ -43,9 +43,9 @@ public class Laser : MonoBehaviour
             {
                 //if (!damageAudio.isPlaying && !GameController.isPaused)
                 //{
-                    //damageAudio.Play();
+                //damageAudio.Play();
                 //}
-                
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Damage");
                 hit.transform.parent.GetComponent<HealthSystem>().TakeDamage(damage);
 
 

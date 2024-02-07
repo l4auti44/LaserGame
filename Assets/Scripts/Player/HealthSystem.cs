@@ -32,6 +32,7 @@ public class HealthSystem : MonoBehaviour
         {
             SetAudioClip("damage");
             audioSource.Play();
+            
         }
         if (!isTakingDamage)
         {
@@ -59,8 +60,9 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         if (DEBUG) Debug.Log("Player Died!");
-        SetAudioClip("death");
-        audioSource.Play();
+        // SetAudioClip("death");
+        // audioSource.Play();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Death");
         GameObject.Find("GameController").GetComponent<GameController>().Die();
 
     }

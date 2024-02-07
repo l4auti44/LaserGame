@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32644928, g: 0.26384902, b: 0.37568521, a: 1}
+  m_IndirectSpecularColor: {r: 0.3264112, g: 0.26383784, b: 0.37561408, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2675,6 +2675,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 5439156200852409963, guid: 4f3c3e5ee4b6c83499c340069d619dbf,
+        type: 3}
+      propertyPath: PlayEvent
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3966,9 +3971,14 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6714368317258927273, guid: e976cdcfff364664abba730d893ff3e2, type: 3}
     - {fileID: 3197141505894226520, guid: e976cdcfff364664abba730d893ff3e2, type: 3}
+    - {fileID: 8148402940839637526, guid: e976cdcfff364664abba730d893ff3e2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7530732460953874133, guid: e976cdcfff364664abba730d893ff3e2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1047444065}
   m_SourcePrefab: {fileID: 100100000, guid: e976cdcfff364664abba730d893ff3e2, type: 3}
 --- !u!1001 &881851555
 PrefabInstance:
@@ -4636,6 +4646,25 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 503098945}
   m_SourcePrefab: {fileID: 100100000, guid: 4f3c3e5ee4b6c83499c340069d619dbf, type: 3}
+--- !u!1 &1047444058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7530732460953874133, guid: e976cdcfff364664abba730d893ff3e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 867082860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1047444065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047444058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1060543496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5222,6 +5251,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de5bd220a243c947a9ce6d1ee2039dc, type: 3}
+--- !u!1 &1183403531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
+    type: 3}
+  m_PrefabInstance: {fileID: 1964321024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1183403540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183403531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -139589736
+      Data2: 1078848010
+      Data3: 342631820
+      Data4: 499466131
+    Path: event:/Footstep
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1183403542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183403531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc7e11d488d742a5af5543ae90967ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSpeed: 0.3
 --- !u!1001 &1184282463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7897,6 +7976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919880504}
   - component: {fileID: 1919880503}
+  - component: {fileID: 1919880505}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -8015,6 +8095,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1919880505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919880502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1520205811
+      Data2: 1229329784
+      Data3: -607211869
+      Data4: 1190138674
+    Path: event:/Charging into the Light
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1925109447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8281,7 +8392,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1183403540}
+    - targetCorrespondingSourceObject: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1183403542}
   m_SourcePrefab: {fileID: 100100000, guid: fccf57967a3d8d1428c9a896725b0135, type: 3}
 --- !u!1 &1970814363
 GameObject:

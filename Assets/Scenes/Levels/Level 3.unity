@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32644928, g: 0.26384902, b: 0.37568521, a: 1}
+  m_IndirectSpecularColor: {r: 0.3264112, g: 0.26383784, b: 0.37561408, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17115,6 +17115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919880504}
   - component: {fileID: 1919880503}
+  - component: {fileID: 1919880505}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -17129,7 +17130,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919880502}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7ba2baf4e02144c4b8b027c2e1407b54, type: 3}
@@ -17233,6 +17234,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1919880505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919880502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1520205811
+      Data2: 1229329784
+      Data3: -607211869
+      Data4: 1190138674
+    Path: event:/Charging into the Light
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1925109447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17796,8 +17828,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964321026}
   m_SourcePrefab: {fileID: 100100000, guid: fccf57967a3d8d1428c9a896725b0135, type: 3}
+--- !u!1 &1964321025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9017232040888737782, guid: fccf57967a3d8d1428c9a896725b0135,
+    type: 3}
+  m_PrefabInstance: {fileID: 1964321024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1964321026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964321025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc7e11d488d742a5af5543ae90967ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSpeed: 0.3
 --- !u!1 &1970814363
 GameObject:
   m_ObjectHideFlags: 0
@@ -18949,6 +19004,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 31.51648
       objectReference: {fileID: 0}
+    - target: {fileID: 553145998606982470, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553145998606982470, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553145998606982470, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 815502959908111535, guid: 083778e82544aa543a92c0dd256f9eb8,
         type: 3}
       propertyPath: m_text
@@ -19182,6 +19252,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712653067921438286, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712653067921438286, guid: 083778e82544aa543a92c0dd256f9eb8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4987675763117507493, guid: 083778e82544aa543a92c0dd256f9eb8,
         type: 3}
