@@ -14,8 +14,6 @@ public class Laser : MonoBehaviour
     private GameObject previousHit;
     private AudioSource damageAudio;
 
-    [SerializeField] AK.Wwise.Event damaged;
-
     //[SerializeField] private float knockbackStrenght = 4f;
 
     //[SerializeField] private bool DEBUG = false;
@@ -50,9 +48,9 @@ public class Laser : MonoBehaviour
             
                 //if (!damageAudio.isPlaying && !GameController.isPaused)
                 //{
-                    //damageAudio.Play();
+                //damageAudio.Play();
                 //}
-                
+            
                 hit.transform.parent.GetComponent<HealthSystem>().TakeDamage(damage);
 
 

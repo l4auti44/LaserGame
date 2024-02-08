@@ -18,9 +18,6 @@ public class HealthSystem : MonoBehaviour
     private RawImage damageIndicator;
     // Start is called before the first frame update
 
-    public AK.Wwise.Event die;
-    public AK.Wwise.Event damaged;
-
     [Serializable]
     public struct AudiosClip
     {
@@ -33,9 +30,10 @@ public class HealthSystem : MonoBehaviour
         
         if (!audioSource.isPlaying && !GameController.isPaused)
         {
-            damaged.Post(gameObject);
-           // SetAudioClip("damage");
-           // audioSource.Play();
+            SetAudioClip("damage");
+            audioSource.Play();
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Damage");
+
         }
         if (!isTakingDamage)
         {
@@ -65,7 +63,7 @@ public class HealthSystem : MonoBehaviour
         if (DEBUG) Debug.Log("Player Died!");
         // SetAudioClip("death");
         // audioSource.Play();
-        die.Post(gameObject); //play death sound effect
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Death");
         GameObject.Find("GameController").GetComponent<GameController>().Die();
 
     }

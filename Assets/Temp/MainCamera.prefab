@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3368996795907387857}
   - component: {fileID: 2536996268448268504}
   - component: {fileID: 548124942260244000}
+  - component: {fileID: 8576554045238751307}
   m_Layer: 7
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -220,3 +221,16 @@ MonoBehaviour:
   holdArea: {fileID: 2584333383503182544}
   pickupRange: 5
   pickupForce: 150
+--- !u!114 &8576554045238751307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530732460953874133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}

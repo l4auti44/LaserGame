@@ -48,6 +48,7 @@ public class FinishLine : MonoBehaviour
 
 
             gameCont.Win();
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Level Complete");
         }
 
     }

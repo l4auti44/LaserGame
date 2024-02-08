@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class Footsteps : MonoBehaviour
 {
-    private CharacterController character;
+
+    private CharacterController controller;
 
     float timer = 0.0f;
 
     [SerializeField]
     float footstepSpeed = 0.3f;
 
-    public AK.Wwise.Event footsteps;
-
+ 
 
     private void Awake()
     {
-        character = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
     }
 
-
-    void Update()
+    private void Update()
     {
-
-        if (character.velocity.magnitude > 1f && Mathf.Abs(character.velocity.y) < 0.1f)
+        if (controller.velocity.magnitude > 1f && Mathf.Abs(controller.velocity.y) < 0.1f) //if the player is moving and grounded
         {
-            if(timer > footstepSpeed)
+            if (timer > footstepSpeed)
             {
-                footsteps.Post(gameObject);
+                Debug.Log("footstep");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Footstep");
                 timer = 0.0f;
             }
 
@@ -35,5 +34,4 @@ public class Footsteps : MonoBehaviour
         }
     }
 
-  
 }

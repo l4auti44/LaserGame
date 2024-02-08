@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 7530805230910908216}
   - component: {fileID: 5717177954968772922}
   - component: {fileID: 5600007186000543880}
+  - component: {fileID: 4343171548562176884}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -277,6 +278,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4343171548562176884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676364093436819450}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.48825544, y: 111.60345, z: 0.5010924}
+  m_Center: {x: 0.002101614, y: 55.30171, z: -0.00851872}
 --- !u!1 &6220513084756048695
 GameObject:
   m_ObjectHideFlags: 0
